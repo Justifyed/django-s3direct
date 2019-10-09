@@ -64,12 +64,6 @@ def get_key(key, file_name, dest):
 
 
 def get_aws_credentials():
-    access_key = getattr(settings, 'AWS_ACCESS_KEY_ID', None)
-    secret_key = getattr(settings, 'AWS_SECRET_ACCESS_KEY', None)
-    if access_key and secret_key:
-        # AWS tokens are not created for pregenerated access keys
-        return AWSCredentials(None, secret_key, access_key)
-
     if not session:
         # AWS credentials are not required for publicly-writable buckets
         return AWSCredentials(None, None, None)
